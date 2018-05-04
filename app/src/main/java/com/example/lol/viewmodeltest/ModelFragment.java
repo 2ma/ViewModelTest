@@ -15,11 +15,20 @@ public class ModelFragment extends Fragment {
 
     private FragmentModel model;
     private TextView textView;
+    private int number;
 
     private static final String TAG = "ModelFragment";
+    private static final String EXTRA_NUMBER = "com.example.lol.viewmodeltest.extra.NUMBER";
 
     public ModelFragment() {
-        Log.d(TAG, "ModelFragment: ");
+    }
+
+    public static ModelFragment getInstance(int number) {
+        ModelFragment modelFragment = new ModelFragment();
+        Bundle args = new Bundle();
+        args.putInt(EXTRA_NUMBER, number);
+        modelFragment.setArguments(args);
+        return modelFragment;
     }
 
     @Nullable
@@ -42,7 +51,9 @@ public class ModelFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        model = ViewModelProviders.of(this).get(FragmentModel.class);
+        model = ViewModelProviders.of(this, new FragmentViewModelFactory()).get(FragmentModel.class);
+        number = getArguments().getInt(EXTRA_NUMBER);
+        Log.d(TAG, "Fragment onCreate: " + number);
     }
 
     @Override
@@ -53,5 +64,17 @@ public class ModelFragment extends Fragment {
 
     private void display(Integer integer) {
         textView.setText(String.valueOf(integer));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: " + number);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause: " + number);
     }
 }

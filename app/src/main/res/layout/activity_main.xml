@@ -7,20 +7,25 @@
     android:orientation="vertical"
     tools:context="com.example.lol.viewmodeltest.MainActivity">
 
-    <fragment
-        android:id="@+id/fragment1"
+    <FrameLayout
+        android:id="@+id/cont1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:name="com.example.lol.viewmodeltest.ModelFragment"
         />
 
-    <fragment
-        android:id="@+id/fragment2"
+    <FrameLayout
+        android:id="@+id/cont2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:name="com.example.lol.viewmodeltest.ModelFragment"
+        />
+
+    <Button
+        android:id="@+id/pagerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Launch pager"
         />
 
 </LinearLayout>
